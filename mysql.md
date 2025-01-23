@@ -66,3 +66,73 @@ docker run -d --name mysqlserver -p 3310:3306 -e MYSQL_ROOT_PASSWORD=1234 -e MYS
 docker stop mysqlserver or docker stop <ID> (recomendado: detención controlada de procesos (dormir))
 docker kill mysqlserver or docker kill <ID> (no recomendado: mata el proceso padre y los subprocesos sin ninguna espera de la conclusión de sus ejecuciones)
 ```
+
+### 11. Para poder inspeccionar un contenedor, imágenes y volumenes de Docker
+```
+docker inspect mysqlserver
+docker inspect mysql:8
+```
+
+### 12. Para ingresar a la red virtual de Docker desde windows
+```
+Anotar \\wsl$ desde cualquier path de búsqueda
+```
+
+### 13. Para crear un contenedor con un volumen anónimo
+```
+docker run -d --name mysqlserver -p 3310:3306 -v /var/lib/mysql -e MYSQL_ROOT_PASSWORD=1234 -e MYSQL_USER=user -e MYSQL_PASSWORD=1234 -e MYSQL_DATABASE=sqldb mysql:8
+```
+
+### 14. Para listar y filtrar volumenes
+```
+docker volume ls
+docker volume ls | grep <NAME> OR <ID> (linux/mac)
+docker volume ls | findStr <NAME> OR <ID> (linux/mac)
+```
+
+### 15. Para eliminar un contenedor con un volumen anónimo
+```
+docker rm -fv mysqlserver or docker rm -fv <ID>
+```
+
+### 16. Para eliminar un volumen específico
+```
+docker volume rm <NAME> OR <ID>
+```
+
+### 17. Para eliminar una lista de volumenes huerfanos
+```
+docker volume prune
+```
+
+### 18. Para eliminar un contenedor con un volumen anónimo
+```
+docker rm -fv mysqlserver or docker rm -fv <ID>
+```
+
+### 19. Para crear un contenedor con un volumen de tipo host
+```
+docker run -d --name mysqlserver -p 3310:3306 -v E:\docker_examples\docker\volumen\mysql:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=1234 -e MYSQL_USER=user -e MYSQL_PASSWORD=1234 -e MYSQL_DATABASE=sqldb mysql:8
+```
+
+### 20. Para eliminar un volumen host
+```
+Se elimina la carpeta de manera manual
+rmdir /s /q "C:\ruta\a\la\carpeta" (windows)
+rm -rf /ruta/a/la/carpeta (linux/mac)
+```
+
+### 21. Para crear un contenedor con un volumen de tipo nombrado
+```
+docker run -d --name mysqlserver -p 3310:3306 -v vol-mysql:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=1234 -e MYSQL_USER=user -e MYSQL_PASSWORD=1234 -e MYSQL_DATABASE=sqldb mysql:8
+```
+
+### 22. Para eliminar un contenedor con un volumen nombrado
+```
+docker rm -fv mysqlserver or docker rm -fv <ID>
+```
+
+### 23. Para crear una red de Docker
+```
+
+```
