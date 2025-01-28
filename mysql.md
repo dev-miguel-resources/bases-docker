@@ -134,5 +134,42 @@ docker rm -fv mysqlserver or docker rm -fv <ID>
 
 ### 23. Para crear una red de Docker
 ```
+docker network create net-mysql (opción corta)
+docker network create net-mysql -d bridge (opción más larga)
+```
 
+### 24. Para listar las redes de Docker
+```
+docker network ls
+```
+
+### 25. Para filtrar el listado de redes de Docker
+```
+docker network ls | findStr net-mysql (windows)
+docker network ls | grep net-mysql (linux/mac)
+```
+
+### 26. Para inspeccionar una red de Docker
+```
+docker network inspect net-mysql
+```
+
+### 27. Para eliminar una red de Docker
+```
+docker network remove net-mysql
+```
+
+### 28. Para conectar un contenedor con una red de Docker
+```
+docker network connect net-mysql mysqlserver
+```
+
+### 29. Para desconectar un contenedor de una red de Docker
+```
+docker network disconnect net-mysql mysqlserver
+```
+
+### 30. Para asociar una red en la creación y ejecución de un contenedor
+```
+docker run -d --name mysqlserver --network net-mysql -p 3310:3306 -v vol-mysql:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=1234 -e MYSQL_USER=user -e MYSQL_PASSWORD=1234 -e MYSQL_DATABASE=sqldb mysql:8
 ```
