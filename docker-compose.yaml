@@ -1,4 +1,42 @@
 version: "3.8"
 
-
+services:
+  mysql-server:
+    image: mysql:8
+    container_name: mysqlserver
+    environment:
+      - MYSQL_ROOT_PASSWORD=12345
+      - MYSQL_USER=user 
+      - MYSQL_PASSWORD=12345
+      - MYSQL_DATABASE=bddcursoaws 
+    ports:
+      - "3310:3306"
+    networks:
+      - net-sql
+    volumes:
+      - data-mysql-vol:/var/lib/mysql
+  
+  mysql-server-2:
+    image: mysql:8
+    container_name: mysqlserver2
+    environment:
+      - MYSQL_ROOT_PASSWORD=12345
+      - MYSQL_USER=user 
+      - MYSQL_PASSWORD=12345
+      - MYSQL_DATABASE=bddcursonode 
+    ports:
+      - "3311:3306"
+    networks:
+      - net-sql
+    volumes:
+      - data-mysql-vol2:/var/lib/mysql
+      
+networks:
+  net-sql:
+    name: net-sql
+    
+volumes:
+  data-mysql-vol:
+   name: data-mysql-vol
+  data-mysql-vol2: 
   
